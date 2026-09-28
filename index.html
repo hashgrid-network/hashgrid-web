@@ -1,232 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HashGrid | Institutional Cloud Mining Network</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HashGrid - Decentralized Cloud Hashrate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            obsidian: '#070A10',
-            cardBg: '#0F1626',
-            cardBorder: '#1E293B',
-            gold: '#F59E0B',
-            goldBrushed: '#D4AF37',
-            emeraldAccent: '#10B981',
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"Space Grotesk"', 'monospace'],
-          }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
     body {
-      background-color: #070A10;
-      color: #E2E8F0;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b0f17;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 60px;
     }
-    .gold-gradient-text {
-      background: linear-gradient(135deg, #FFF0B3 0%, #D4AF37 50%, #B8860B 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .container {
+      max-width: 580px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
-    .gold-btn {
-      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #34d399;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin: 0 auto;
     }
-    .gold-btn:hover {
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
-      transform: translateY(-1px);
+    .badge .dot {
+      width: 7px;
+      height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
     }
-    .glow-border {
-      border: 1px solid rgba(245, 158, 11, 0.25);
+    .hero-title {
+      font-size: 32px;
+      line-height: 1.25;
+      font-weight: 800;
+      text-align: center;
+      color: #ffffff;
+      margin-top: 10px;
+    }
+    .hero-title .gold {
+      color: #facc15;
+    }
+    .hero-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #94a3b8;
+      text-align: center;
+      margin-top: -6px;
+    }
+    .hero-desc .highlight {
+      color: #facc15;
+      font-weight: 600;
+    }
+    .download-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f59e0b;
+      color: #0f172a;
+      text-decoration: none;
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      transition: transform 0.15s ease, background 0.15s ease;
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.25);
+      margin-top: 8px;
+    }
+    .download-btn:active {
+      transform: scale(0.98);
+      background: #d97706;
+    }
+    .download-btn .sub-text {
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 2px;
+      font-weight: 700;
+    }
+    .download-btn .main-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+    }
+    .download-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+    .pool-banner {
+      background: #111827;
+      border: 1px solid #1f2937;
+      padding: 12px 16px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+    .pool-banner .pool-value {
+      color: #facc15;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .stat-card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .stat-card .label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+    .stat-card .value {
+      font-size: 18px;
+      font-weight: 800;
+      color: #facc15;
+    }
+    .stat-card .sub {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+    .cluster-banner {
+      background: #0f172a;
+      border: 1px dashed #334155;
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+    .cluster-banner .cluster-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-gold selection:text-black">
-
-  <!-- Top Announcement Bar -->
-  <aside aria-label="Announcement" class="bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-transparent border-b border-amber-500/30 px-4 py-2.5 text-center text-xs font-semibold text-amber-300 flex items-center justify-between">
-    <div class="flex-1 text-center truncate">
-      ⚡ GENESIS PHASE 1 IS LIVE: Mine 24.0 Free GRID Coins Daily &amp; Deploy $10 Starter Rigs!
-    </div>
-    <span class="text-amber-400 font-mono text-xs opacity-75">v1.0.5</span>
-  </aside>
-
-  <!-- Navigation Bar -->
-  <header>
-    <nav class="border-b border-slate-800/80 bg-obsidian/90 backdrop-blur-md sticky top-0 z-50 px-4 lg:px-8 py-3.5 flex items-center justify-between">
-      <div class="flex items-center space-x-2.5">
-        <div class="w-9 h-9 rounded-lg bg-gold/10 border border-gold/40 flex items-center justify-center">
-          <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
-          </svg>
-        </div>
-        <div>
-          <span class="text-lg font-bold tracking-wider text-white">HASH<span class="text-gold">GRID</span></span>
-          <span class="block text-[9px] uppercase tracking-widest text-slate-400 font-mono -mt-1">Cloud Mining Network</span>
-        </div>
-      </div>
-      <a href="https://github.com/hashgrid-network/hashgrid-web/releases/latest" 
-         class="gold-btn text-black text-xs font-bold px-4 py-2 rounded-lg flex items-center space-x-1.5 shadow-md">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-        </svg>
-        <span>Download APK</span>
-      </a>
-    </nav>
-  </header>
-
-  <!-- Main Hero Section -->
-  <main class="max-w-4xl mx-auto px-4 py-8 md:py-12 w-full">
-    
-    <!-- Institutional Badge -->
-    <div class="flex justify-center mb-5">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-700 text-[11px] font-mono tracking-wide text-slate-300">
-        <span class="w-2 h-2 rounded-full bg-emeraldAccent animate-pulse"></span>
-        <span>DECENTRALIZED CLOUD HASHRATE &amp; TREASURY GOVERNANCE</span>
-      </div>
+<body>
+  <div class="container">
+    <div class="badge">
+      <span class="dot"></span>
+      Decentralized Cloud Hashrate & Treasury Governance
     </div>
 
-    <!-- Hero Title -->
-    <h1 class="text-3xl md:text-5xl font-extrabold text-center tracking-tight leading-tight mb-4 text-white">
-      Mine Native <span class="gold-gradient-text">GRID Tokens</span>.<br>
-      Earn Real Daily <span class="gold-gradient-text">USDT Yields</span>.
+    <h1 class="hero-title">
+      Mine Native <span class="gold">GRID Tokens</span>.<br />
+      Earn Real Daily <span class="gold">USDT Yields</span>.
     </h1>
 
-    <!-- Subtitle -->
-    <p class="text-sm md:text-base text-slate-400 text-center max-w-2xl mx-auto leading-relaxed mb-8">
-      The institutional dual-earning crypto platform. Experience zero-battery 
-      <strong class="text-white">24-hour tap-to-mine</strong> for early GRID utility coins, or deploy 
-      <strong class="text-amber-400">30-day fixed cloud mining contracts</strong> ($10 to $500) generating 
-      <strong class="text-emeraldAccent">10% – 15% monthly ROI</strong> with 30% milestone capital protection.
+    <p class="hero-desc">
+      The institutional dual-earning crypto platform. Experience zero-battery 24-hour tap-to-mine for early GRID utility coins, or deploy 30-day fixed cloud mining contracts ($10 to $500) generating <span class="highlight">10% – 15% monthly ROI</span> with 30% milestone capital protection.
     </p>
 
-    <!-- Download CTA Section -->
-    <div class="flex flex-col items-center gap-3.5 mb-10 max-w-md mx-auto">
-      <a href="https://github.com/hashgrid-network/hashgrid-web/releases/latest" 
-         class="w-full gold-btn py-3.5 px-6 rounded-xl flex items-center justify-center space-x-3 text-black font-extrabold shadow-lg border border-amber-300/30">
-        <div class="bg-black/10 p-1.5 rounded-lg">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-          </svg>
-        </div>
-        <div class="text-left">
-          <span class="block text-[10px] uppercase font-mono tracking-wider text-black/75">Official Android Client</span>
-          <span class="text-base tracking-wide">Download HashGrid APK (v1.0.5)</span>
-        </div>
-      </a>
-
-      <div class="w-full py-2.5 px-4 rounded-xl bg-cardBg border border-cardBorder text-slate-300 text-xs font-mono flex items-center justify-between">
-        <span class="text-slate-400">Referral Commission Pool:</span>
-        <span class="text-gold font-bold text-sm">$10,000.00 USDT</span>
-      </div>
-    </div>
-
-    <!-- Core Platform Parameters Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3.5 mb-8">
-      
-      <div class="bg-cardBg border border-cardBorder rounded-xl p-4 text-left">
-        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1">TOTAL SUPPLY CAP</span>
-        <span class="text-xl font-bold font-mono text-gold">100M</span>
-        <span class="block text-[11px] text-slate-500 font-mono">GRID Coins</span>
-      </div>
-
-      <div class="bg-cardBg border border-cardBorder rounded-xl p-4 text-left">
-        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1">FIXED CONTRACT TERM</span>
-        <span class="text-xl font-bold font-mono text-white">30 Days</span>
-        <span class="block text-[11px] text-emeraldAccent font-mono">10% - 15% ROI</span>
-      </div>
-
-      <div class="bg-cardBg border border-cardBorder rounded-xl p-4 text-left">
-        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1">CAPITAL LOCK TARGET</span>
-        <span class="text-xl font-bold font-mono text-amber-400">30%</span>
-        <span class="block text-[11px] text-slate-500 font-mono">Yield Milestone</span>
-      </div>
-
-      <div class="bg-cardBg border border-cardBorder rounded-xl p-4 text-left">
-        <span class="block text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1">MIN WITHDRAWAL</span>
-        <span class="text-xl font-bold font-mono text-emeraldAccent">10.00</span>
-        <span class="block text-[11px] text-slate-500 font-mono">USDT (Instant)</span>
-      </div>
-
-    </div>
-
-    <!-- Live Hashrate Cluster Banner -->
-    <div class="bg-cardBg/90 border border-slate-800 rounded-xl p-5 mb-8">
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center space-x-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-emeraldAccent animate-ping"></span>
-          <h2 class="text-xs uppercase font-mono tracking-wider text-slate-300 font-bold">LIVE GLOBAL CLOUD HASHRATE CLUSTER</h2>
-        </div>
-        <span class="text-[11px] font-mono text-slate-500">Tier-4 Hosted</span>
-      </div>
-      <p class="text-xs text-slate-400 mb-4 leading-relaxed">
-        30-day fixed contracts synchronized across 4 enterprise hosting zones. 
-        Accrued profits accumulate in real-time and unlock at 30-day maturity.
-      </p>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-slate-800/80 font-mono text-xs">
-        <div>
-          <span class="block text-[10px] text-slate-500">Total Network Hash:</span>
-          <span class="text-gold font-bold">8.46 PH/s</span>
-        </div>
-        <div>
-          <span class="block text-[10px] text-slate-500">Active Rigs Deployed:</span>
-          <span class="text-slate-200 font-bold">4,143 Nodes</span>
-        </div>
-        <div>
-          <span class="block text-[10px] text-slate-500">Node Status:</span>
-          <span class="text-emeraldAccent font-bold">100% Operational</span>
-        </div>
-        <div>
-          <span class="block text-[10px] text-slate-500">Account Security:</span>
-          <span class="text-amber-400 font-bold">Mandatory TOTP 2FA</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Official Protocol Deposit Vaults -->
-    <div class="bg-cardBg border border-slate-800 rounded-xl p-5">
-      <h2 class="text-xs font-mono uppercase tracking-widest text-slate-400 mb-3 flex items-center space-x-2">
-        <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+    <a
+      href="https://github.com/hashgrid-network/hashgrid-web/releases/download/v1.0.5/hashgrid-v1.0.5.apk"
+      download
+      class="download-btn"
+    >
+      <span class="sub-text">Official Android Client</span>
+      <span class="main-text">
+        <svg fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
         </svg>
-        <span>Verified Protocol Deposit Vaults</span>
-      </h2>
-      <div class="space-y-3 font-mono text-xs">
-        <div class="p-3 bg-obsidian rounded-lg border border-slate-800">
-          <div class="flex justify-between items-center mb-1">
-            <span class="text-amber-400 font-bold text-[11px]">USDT (BEP-20 / BSC)</span>
-            <span class="text-[10px] text-slate-500">Auto-Credit</span>
-          </div>
-          <p class="text-slate-300 break-all select-all font-mono text-[11px]">0x1fAcE21fc7cA33abb4B37fba82280266C12D9c09</p>
-        </div>
-        <div class="p-3 bg-obsidian rounded-lg border border-slate-800">
-          <div class="flex justify-between items-center mb-1">
-            <span class="text-amber-400 font-bold text-[11px]">USDT (TRC-20 / TRON)</span>
-            <span class="text-[10px] text-slate-500">Auto-Credit</span>
-          </div>
-          <p class="text-slate-300 break-all select-all font-mono text-[11px]">TJj7G3U8qVSzqcJaxAhQG34ADHihnR6WuD</p>
-        </div>
+        Download HashGrid APK (v1.0.5)
+      </span>
+    </a>
+
+    <div class="pool-banner">
+      <span>Referral Commission Pool:</span>
+      <span class="pool-value">$10,000.00 USDT</span>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="label">Total Supply Cap</span>
+        <span class="value">100M</span>
+        <span class="sub">GRID Coins</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Fixed Contract Term</span>
+        <span class="value">30 Days</span>
+        <span class="sub">10% - 15% ROI</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Capital Protection</span>
+        <span class="value">30%</span>
+        <span class="sub">Milestone</span>
+      </div>
+      <div class="stat-card">
+        <span class="label">Min Withdrawal</span>
+        <span class="value">10.00</span>
+        <span class="sub">USDT</span>
       </div>
     </div>
 
-  </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-slate-800 py-6 text-center text-slate-500 text-xs font-mono">
-    <p>© 2026 HashGrid Network Inc. All Rights Reserved.</p>
-    <p class="text-[10px] text-slate-600 mt-1">Secured via Dual-Chain Oracle Consensus &amp; Hardware Encryption</p>
-  </footer>
-
+    <div class="cluster-banner">
+      <span class="cluster-dot"></span>
+      LIVE GLOBAL CLOUD HASHRATE CLUSTER
+    </div>
+  </div>
 </body>
 </html>
