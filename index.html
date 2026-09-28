@@ -1,245 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HashGrid - Decentralized Cloud Hashrate</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
-    body {
-      background-color: #0b0f17;
-      color: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 16px 60px;
-    }
-    .container {
-      max-width: 580px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      padding: 6px 14px;
-      border-radius: 9999px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #34d399;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin: 0 auto;
-    }
-    .badge .dot {
-      width: 7px;
-      height: 7px;
-      background: #10b981;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #10b981;
-    }
-    .hero-title {
-      font-size: 32px;
-      line-height: 1.25;
-      font-weight: 800;
-      text-align: center;
-      color: #ffffff;
-      margin-top: 10px;
-    }
-    .hero-title .gold {
-      color: #facc15;
-    }
-    .hero-desc {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #94a3b8;
-      text-align: center;
-      margin-top: -6px;
-    }
-    .hero-desc .highlight {
-      color: #facc15;
-      font-weight: 600;
-    }
-    .download-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #f59e0b;
-      color: #0f172a;
-      text-decoration: none;
-      padding: 16px 20px;
-      border-radius: 14px;
-      font-weight: 800;
-      transition: transform 0.15s ease, background 0.15s ease;
-      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.25);
-      margin-top: 8px;
-    }
-    .download-btn:active {
-      transform: scale(0.98);
-      background: #d97706;
-    }
-    .download-btn .sub-text {
-      font-size: 11px;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      opacity: 0.85;
-      margin-bottom: 2px;
-      font-weight: 700;
-    }
-    .download-btn .main-text {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 18px;
-    }
-    .download-btn svg {
-      width: 22px;
-      height: 22px;
-    }
-    .pool-banner {
-      background: #111827;
-      border: 1px solid #1f2937;
-      padding: 12px 16px;
-      border-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 13px;
-      color: #94a3b8;
-    }
-    .pool-banner .pool-value {
-      color: #facc15;
-      font-weight: 700;
-      font-size: 14px;
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .stat-card {
-      background: #111827;
-      border: 1px solid #1f2937;
-      border-radius: 12px;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .stat-card .label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      color: #64748b;
-    }
-    .stat-card .value {
-      font-size: 18px;
-      font-weight: 800;
-      color: #facc15;
-    }
-    .stat-card .sub {
-      font-size: 11px;
-      color: #94a3b8;
-    }
-    .cluster-banner {
-      background: #0f172a;
-      border: 1px dashed #334155;
-      border-radius: 10px;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      color: #94a3b8;
-      font-weight: 600;
-      letter-spacing: 0.4px;
-    }
-    .cluster-banner .cluster-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #10b981;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HashGrid | Institutional Sub-Zero Cloud Mining Protocol</title>
+    <meta name="description" content="Deploy dedicated ASIC hashpower backed by Arctic geothermal infrastructure. Mine native GRID tokens with institutional-grade hardware.">
+    
+    <!-- OpenGraph / Social Share Meta -->
+    <meta property="og:title" content="HashGrid Cloud Mining - Start Mining Today">
+    <meta property="og:description" content="Claim +1.5 GH/s instant welcome bonus and start mining native GRID tokens on institutional sub-zero clusters.">
+    <meta property="og:image" content="https://hashgrid.online/preview.png">
+    <meta property="og:url" content="https://hashgrid.online/">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #080B11;
+            --card-dark: #0F1420;
+            --card-border: rgba(226, 179, 78, 0.22);
+            --gold-primary: #F3BA2F;
+            --gold-gradient: linear-gradient(135deg, #F9D976 0%, #E9B838 50%, #B8860B 100%);
+            --gold-glow: rgba(243, 186, 47, 0.25);
+            --mint: #10B981;
+            --mint-glow: rgba(16, 185, 129, 0.15);
+            --text-main: #FFFFFF;
+            --text-muted: #8E9BAE;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Ambient Glow Backgrounds */
+        .ambient-glow-top {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(233, 184, 56, 0.12) 0%, rgba(8, 11, 17, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Top Navigation Header */
+        header {
+            position: relative;
+            z-index: 10;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--gold-gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 20px;
+            color: #080B11;
+            box-shadow: 0 4px 14px var(--gold-glow);
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+        }
+
+        .logo-badge {
+            background: rgba(243, 186, 47, 0.15);
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+            margin-left: 6px;
+        }
+
+        .status-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--mint);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--mint);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--mint);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        /* Container */
+        .hero-container {
+            position: relative;
+            z-index: 10;
+            max-width: 880px;
+            margin: 40px auto 20px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        /* Referral Welcome Banner */
+        .referral-alert-box {
+            display: none;
+            background: linear-gradient(90deg, rgba(243, 186, 47, 0.12), rgba(243, 186, 47, 0.04));
+            border: 1.5px dashed var(--gold-primary);
+            border-radius: var(--radius-md);
+            padding: 12px 18px;
+            margin-bottom: 28px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .referral-alert-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 13.5px;
+            color: #FFE699;
+            font-weight: 600;
+        }
+
+        .ref-code-highlight {
+            background: var(--gold-primary);
+            color: #080B11;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        /* Main Hero Texts */
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(34px, 5.5vw, 56px);
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 18px;
+        }
+
+        h1 span {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.hero-sub {
+            font-size: clamp(15px, 2.2vw, 18px);
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 650px;
+            margin: 0 auto 36px auto;
+        }
+
+        /* Download Section */
+        .cta-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+
+        .btn-download-apk {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            background: var(--gold-gradient);
+            color: #080B11;
+            font-size: 17px;
+            font-weight: 900;
+            text-decoration: none;
+            padding: 18px 42px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--gold-glow);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .btn-download-apk:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(243, 186, 47, 0.4);
+        }
+
+        .btn-download-apk:active {
+            transform: scale(0.98);
+        }
+
+        .btn-download-apk svg {
+            width: 24px;
+            height: 24px;
+            fill: #080B11;
+        }
+
+        .file-meta-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .file-meta-info span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: var(--card-dark);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 18px 12px;
+            text-align: center;
+        }
+
+        .stat-val {
+            font-size: 22px;
+            font-weight: 900;
+            color: #FFFFFF;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 4px;
+        }
+
+        .stat-lbl {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        /* Highlights feature cards */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            text-align: left;
+            margin-bottom: 50px;
+        }
+
+        .feature-box {
+            background: rgba(15, 20, 32, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .feature-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 6px;
+        }
+
+        .feature-desc {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 24px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--gold-primary);
+            text-decoration: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .hero-container {
+                margin-top: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="badge">
-      <span class="dot"></span>
-      Decentralized Cloud Hashrate & Treasury Governance
-    </div>
 
-    <h1 class="hero-title">
-      Mine Native <span class="gold">GRID Tokens</span>.<br />
-      Earn Real Daily <span class="gold">USDT Yields</span>.
-    </h1>
+    <div class="ambient-glow-top"></div>
 
-    <p class="hero-desc">
-      The institutional dual-earning crypto platform. Experience zero-battery 24-hour tap-to-mine for early GRID utility coins, or deploy 30-day fixed cloud mining contracts ($10 to $500) generating <span class="highlight">10% – 15% monthly ROI</span> with 30% milestone capital protection.
-    </p>
+    <!-- Header Navigation -->
+    <header>
+        <a href="/" class="logo-wrap">
+            <div class="logo-icon">⚡</div>
+            <div class="logo-text">HASHGRID<span class="logo-badge">PRO</span></div>
+        </a>
+        <div class="status-pill">
+            <div class="status-dot"></div>
+            <span>GENESIS LIVE</span>
+        </div>
+    </header>
 
-    <a
-      href="https://github.com/hashgrid-network/hashgrid-web/releases/download/v1.0.5/hashgrid-v1.0.5.apk"
-      download
-      class="download-btn"
-    >
-      <span class="sub-text">Official Android Client</span>
-      <span class="main-text">
-        <svg fill="currentColor" viewBox="0 0 24 24">
-          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-        </svg>
-        Download HashGrid APK (v1.0.5)
-      </span>
-    </a>
+    <!-- Main Hero -->
+    <main class="hero-container">
 
-    <div class="pool-banner">
-      <span>Referral Commission Pool:</span>
-      <span class="pool-value">$10,000.00 USDT</span>
-    </div>
+        <!-- Dynamic Referral Code Banner -->
+        <div id="referralBanner" class="referral-alert-box">
+            <div class="referral-alert-content">
+                <span>🎁 Special Invite Bonus:</span>
+                <span class="ref-code-highlight" id="refCodeText">HG-XXXX</span>
+                <span>(+1.5 GH/s Hashrate Boost Applied)</span>
+            </div>
+        </div>
 
-    <div class="stats-grid">
-      <div class="stat-card">
-        <span class="label">Total Supply Cap</span>
-        <span class="value">100M</span>
-        <span class="sub">GRID Coins</span>
-      </div>
-      <div class="stat-card">
-        <span class="label">Fixed Contract Term</span>
-        <span class="value">30 Days</span>
-        <span class="sub">10% - 15% ROI</span>
-      </div>
-      <div class="stat-card">
-        <span class="label">Capital Protection</span>
-        <span class="value">30%</span>
-        <span class="sub">Milestone</span>
-      </div>
-      <div class="stat-card">
-        <span class="label">Min Withdrawal</span>
-        <span class="value">10.00</span>
-        <span class="sub">USDT</span>
-      </div>
-    </div>
+        <div class="hero-tag">INSTITUTIONAL CLOUD MINING PROTOCOL</div>
+        <h1>Next-Gen Cloud Mining.<br><span>Real-Time Yields.</span></h1>
+        
+        <p class="hero-sub">
+            Mine native GRID tokens & earn continuous daily yields on institutional sub-zero geothermal clusters. Direct wallet payouts & 100% verified uptime.
+        </p>
 
-    <div class="cluster-banner">
-      <span class="cluster-dot"></span>
-      LIVE GLOBAL CLOUD HASHRATE CLUSTER
-    </div>
-  </div>
+        <!-- Direct APK Download Section -->
+        <div class="cta-box">
+            <a id="apkDownloadBtn" href="https://github.com/hashgrid-network/hashgrid-web/releases/download/v1.0.6/hashgrid-v1.0.6.apk" class="btn-download-apk" download>
+                <svg viewBox="0 0 24 24">
+                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+                </svg>
+                <span>DOWNLOAD APK (v1.0.6)</span>
+            </a>
+
+            <div class="file-meta-info">
+                <span>⚡ Version 1.0.6</span>
+                <span>•</span>
+                <span>📦 27.5 MB</span>
+                <span>•</span>
+                <span>🛡️ SHA-256 Verified</span>
+            </div>
+        </div>
+
+        <!-- Live Metrics Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-val">100,000+</div>
+                <div class="stat-lbl">Active Rigs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">99.98%</div>
+                <div class="stat-lbl">Server Uptime</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">24/7</div>
+                <div class="stat-lbl">Realtime Mining</div>
+            </div>
+        </div>
+
+        <!-- Ecosystem Features -->
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Persistent Real-Time Mining</div>
+                <div class="feature-desc">Continuous second-by-second token accrual. Background-aware engine calculates elapsed offline yields seamlessly.</div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">👥</div>
+                <div class="feature-title">7% Affiliate Commissions</div>
+                <div class="feature-desc">Earn instant USDT commission on hardware purchases plus +1.5 GH/s hashrate for every friend who joins your syndicate.</div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Audited Multi-Sig Security</div>
+                <div class="feature-desc">Protected by cold-storage multi-sig protocols with segregated enterprise liquidity reservoirs.</div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 HashGrid Network Inc. All institutional rights reserved.</p>
+        <p style="margin-top: 6px;">Official Gateway: <a href="https://hashgrid.online/">hashgrid.online</a></p>
+    </footer>
+
+    <!-- Referral Query Reader Script -->
+    <script>
+        (function() {
+            // URL se ?ref= parameter extract karna
+            const urlParams = new URLSearchParams(window.location.search);
+            const refCode = urlParams.get('ref');
+
+            if (refCode && refCode.trim() !== '') {
+                const banner = document.getElementById('referralBanner');
+                const text = document.getElementById('refCodeText');
+                if (banner && text) {
+                    text.textContent = refCode.trim();
+                    banner.style.display = 'block';
+                }
+                
+                // Local storage me bhi store kar lete hain taaki session maintain rahe
+                localStorage.setItem('hashgrid_invited_by', refCode.trim());
+            }
+        })();
+    </script>
 </body>
 </html>
